@@ -35,7 +35,7 @@ public class ProfileRepository {
         fetchInternetData(application,null);
     }
 
-    void fetchInternetData(Application application, @Nullable String gender){
+    public void fetchInternetData(Application application, @Nullable String gender){
         //Networkcall
         GetDataService dataService = RetrofitClientInstance.getInstance().create(GetDataService.class);
         Call<JsonElement> call;
@@ -73,20 +73,20 @@ public class ProfileRepository {
         });
     }
 
-    LiveData<List<Profile>> getProfiles() {
+    public LiveData<List<Profile>> getProfiles() {
         return profiles;
     }
 
     private void insert(Profile... profile){
         new InsertProfileAsyncTask(profileDao).execute(profile);
     }
-    void update(Profile profile){
+    public void update(Profile profile){
         new UpdateProfileAsyncTask(profileDao).execute(profile);
     }
-    void delete(Profile profile){
+    public void delete(Profile profile){
         new DeleteProfileAsyncTask(profileDao).execute(profile);
     }
-    void deleteAllProfile(){
+    public void deleteAllProfile(){
         new DeleteAllProfileAsyncTask(profileDao).execute();
     }
 
