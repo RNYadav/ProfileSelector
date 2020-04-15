@@ -5,6 +5,7 @@ import android.app.Application;
 import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
+import androidx.paging.PagedList;
 
 import com.example.profileselector.database.ProfileRepository;
 import com.example.profileselector.model.Profile;
@@ -13,7 +14,7 @@ import java.util.List;
 
 public class ProfileViewModel extends AndroidViewModel {
     private ProfileRepository repository;
-    private LiveData<List<Profile>> profiles;
+    private LiveData<PagedList<Profile>> profiles;
 
     public ProfileViewModel(@NonNull Application application) {
         super(application);
@@ -21,7 +22,7 @@ public class ProfileViewModel extends AndroidViewModel {
         profiles = repository.getProfiles();
     }
 
-    public LiveData<List<Profile>> getProfiles() {
+    public LiveData<PagedList<Profile>> getProfiles() {
         return profiles;
     }
 

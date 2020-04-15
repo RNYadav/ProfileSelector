@@ -7,17 +7,17 @@ import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.lifecycle.LiveData;
+import androidx.paging.LivePagedListBuilder;
+import androidx.paging.PagedList;
 
+import com.example.profileselector.model.Profile;
 import com.example.profileselector.network.GetDataService;
 import com.example.profileselector.network.RetrofitClientInstance;
-import com.example.profileselector.model.Profile;
 import com.google.gson.JsonElement;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-
-import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -26,12 +26,13 @@ import retrofit2.Response;
 public class ProfileRepository {
     private static final String TAG = "REPO";
     private ProfileDao profileDao;
-    private LiveData<List<Profile>> profiles;
+    private LiveData<PagedList<Profile>> profiles;
 
     public ProfileRepository(final Application application) {
         ProfileDatabase database = ProfileDatabase.getInstance(application);
         profileDao = database.profileDao();
-        profiles = profileDao.getProfiles();
+        profiles = new LivePagedListBuilder<>(profileDao.getProfiles(), 10).build();
+        //profileDao.getProfiles();
         fetchInternetData(application,null);
     }
 
@@ -73,7 +74,7 @@ public class ProfileRepository {
         });
     }
 
-    public LiveData<List<Profile>> getProfiles() {
+    public LiveData<PagedList<Profile>> getProfiles() {
         return profiles;
     }
 

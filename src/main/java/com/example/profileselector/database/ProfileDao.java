@@ -1,6 +1,8 @@
 package com.example.profileselector.database;
 
 import androidx.lifecycle.LiveData;
+import androidx.paging.DataSource;
+import androidx.paging.PagedList;
 import androidx.room.Dao;
 import androidx.room.Delete;
 import androidx.room.Insert;
@@ -27,5 +29,5 @@ public interface ProfileDao {
     void deleteAllProfiles();
 
     @Query("SELECT * FROM profile_table ORDER BY id DESC")
-    LiveData<List<Profile>> getProfiles();
+    DataSource.Factory<Integer, Profile> getProfiles();
 }
