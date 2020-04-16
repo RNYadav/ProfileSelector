@@ -18,6 +18,18 @@ you can directly download the apk file from the git repo. and install it on you 
 - **Rebuild ( _Recommended_ ) :**
 Clone the git repo and open it in Android Studio. Rebuild the project and deploy it on your test device. This method ensures upto-date code deployment with the latest commits.
 
+
+## Task List
+Development process is divided into minor task to keep track of the process
+
+- [x] Accept / Reject profiles
+- [x] Database Implemented / Updates
+- [x] Persist State
+- [x] Work Offline
+- [ ] Paging DiffUtil Implementation
+- [ ] Save 'intrest' preference
+- [ ] Pull to Refresh
+
 ## Architecture components 
  Architecture components help to design robust, testable and maintainable apps.
 
